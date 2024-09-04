@@ -17,7 +17,6 @@ const getClientes = async (req, res) => {
 }
 const createClientes = async (req,res) => {
     const dados = req.body
-    console.log("Teste")
     if(!dados.nome || !dados.email) {
      res.status(406).send({error:'Nome deve ser informado'})
     }

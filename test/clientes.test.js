@@ -17,20 +17,31 @@ describe('Criar /clientes', () => {
     it('criar cliente com sucesso', async() => {
         const res = await request(app).post('/clientes').send(
             {
-                nome:'ramon teste',
-                email:'ramon@teste.com',
-                senha:'senhasupersegura',
+                nome:'vitor teste',
+                email:'vitor@teste.com',
+                senha:'senhasupervitor',
             }
             );
             expect(res.status).toBe(204)
     });
 })
 
+describe('Criar /clientes/:id', () => {
+    it('atualizar o nome do cliente com sucesso', async () => {
+        const res = await request(app).post('/clientes/2d0bb648-5cc4-4047-8fc4-8017653ee82e').send(
+            {
+                nome:'vitor update',
+            }
+        )
+        expect(res.status).toBe(200)
+    })
+})
+
 describe('deletar /clientes/:id', () => {
     it('deletar um cliente com sucesso', async () => {
-        const res = await request(app).delete('/clientes/127fae5d-85aa-4cfa-86ba-10609ca700f8').send(
+        const res = await request(app).delete('/clientes/2d0bb648-5cc4-4047-8fc4-8017653ee82e').send(
             {
-                nome:'ramon teste'
+                nome:'vitor update'
             })
             expect(res.status).toBe(204)
     })

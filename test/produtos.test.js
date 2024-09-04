@@ -17,17 +17,28 @@ describe('Criar /produtos', () => {
     it('criar produto com sucesso', async() => {
         const res = await request(app).post('/produtos').send(
             {
-                preco: '14,99',
-                nome:  'Esmalte',
+                preco: '99',
+                nome:  'lego',
             }
             );
             expect(res.status).toBe(204)
     });
 })
 
-describe('atualizar /produtos/:id', () => {
-    it('atualizar nome do produto com sucesso', async () => {
-        const res = await request(app).delete('/produtos/0a6ddabe-9cd9-42eb-a6d5-333435f486dc').send(
+describe('Criar /produtos/:id', () => {
+    it('atualizar o nome do produto com sucesso', async () => {
+        const res = await request(app).post('/produtos/eb566b58-68a3-4e84-9529-b05d681943a1').send(
+            {
+                nome: 'lego',
+            }
+        )
+        expect(res.status).toBe(200)
+    })
+})
+
+describe('deletar /produtos/:id', () => {
+    it('deletar nome do produto com sucesso', async () => {
+        const res = await request(app).delete('/produtos/eb566b58-68a3-4e84-9529-b05d681943a1').send(
             {
                 nome:'ramon teste'
             })

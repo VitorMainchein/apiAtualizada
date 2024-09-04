@@ -17,7 +17,6 @@ const getProduto = async (req, res) => {
 }
 const createProduto = async (req,res) => {
     const dados = req.body
-    console.log("Teste")
     if(!dados.nome || !dados.preco) {
         return res.status(406).send({error:'Nome e preço deve ser informado'})
     }
