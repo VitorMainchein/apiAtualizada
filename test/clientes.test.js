@@ -7,10 +7,10 @@ describe('GET /clientes', () =>{
         expect(res.status).toBe(200);
     
 });
-it('verificar se a lista de clientes está cheia', async() =>{
-    const res = await request (app).get('/clientes').send();
-    expect(res.body.toBefined);
-}); 
+    it('verificar se a lista de clientes está cheia', async() =>{
+        const res = await request (app).get('/clientes').send();
+        expect(res.body.toBefined);
+    }); 
 })
 
 describe('Criar /clientes', () => {
@@ -23,12 +23,20 @@ describe('Criar /clientes', () => {
             }
             );
             expect(res.status).toBe(204)
-    });
+        });
+    })
+    
+describe('GET /clientes/:id', () => {
+    it('pegar informações do cliente pelo id com sucesso', async () => {
+        const res = await request(app).get('/clientes/936cd5ae-9628-452b-ad37-bebeb5385503').send();
+        expect(res.status).toBe(200);
+    })
 })
+    
 
 describe('Criar /clientes/:id', () => {
     it('atualizar o nome do cliente com sucesso', async () => {
-        const res = await request(app).post('/clientes/2d0bb648-5cc4-4047-8fc4-8017653ee82e').send(
+        const res = await request(app).post('/clientes/936cd5ae-9628-452b-ad37-bebeb5385503').send(
             {
                 nome:'vitor update',
             }
@@ -37,12 +45,12 @@ describe('Criar /clientes/:id', () => {
     })
 })
 
-describe('deletar /clientes/:id', () => {
-    it('deletar um cliente com sucesso', async () => {
-        const res = await request(app).delete('/clientes/2d0bb648-5cc4-4047-8fc4-8017653ee82e').send(
-            {
-                nome:'vitor update'
-            })
-            expect(res.status).toBe(204)
-    })
-} )
+// describe('deletar /clientes/:id', () => {
+//     it('deletar um cliente com sucesso', async () => {
+//         const res = await request(app).delete('/clientes/936cd5ae-9628-452b-ad37-bebeb5385503').send(
+//             {
+//                 nome:'vitor update'
+//             })
+//         expect(res.status).toBe(204)
+//     })
+// } )

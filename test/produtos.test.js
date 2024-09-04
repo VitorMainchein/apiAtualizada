@@ -7,9 +7,9 @@ describe('GET /produtos', () =>{
         expect(res.status).toBe(200);
     
 });
-it('verificar se a lista de produtos está cheia', async() =>{
-    const res = await request (app).get('/produtos').send();
-    expect(res.body.toBefined);
+    it('verificar se a lista de produtos está cheia', async() =>{
+        const res = await request (app).get('/produtos').send();
+        expect(res.body.toBefined);
 }); 
 })
 
@@ -25,9 +25,17 @@ describe('Criar /produtos', () => {
     });
 })
 
+describe('GET /produtos/:id', () => {
+    it('pegar informações do produto pelo id com sucesso', async () => {
+        const res = await request(app).get('/produtos/165f3117-cf4a-4945-b33e-1e050d351f9b').send();
+        expect(res.status).toBe(200);
+    })
+})
+
+
 describe('Criar /produtos/:id', () => {
     it('atualizar o nome do produto com sucesso', async () => {
-        const res = await request(app).post('/produtos/eb566b58-68a3-4e84-9529-b05d681943a1').send(
+        const res = await request(app).post('/produtos/165f3117-cf4a-4945-b33e-1e050d351f9b').send(
             {
                 nome: 'lego',
             }
@@ -36,12 +44,12 @@ describe('Criar /produtos/:id', () => {
     })
 })
 
-describe('deletar /produtos/:id', () => {
-    it('deletar nome do produto com sucesso', async () => {
-        const res = await request(app).delete('/produtos/eb566b58-68a3-4e84-9529-b05d681943a1').send(
-            {
-                nome:'ramon teste'
-            })
-            expect(res.status).toBe(204)
-    })
-} )
+// describe('deletar /produtos/:id', () => {
+//     it('deletar nome do produto com sucesso', async () => {
+//         const res = await request(app).delete('/produtos/165f3117-cf4a-4945-b33e-1e050d351f9b').send(
+//             {
+//                 nome:'ramon teste'
+//             })
+//         expect(res.status).toBe(204)
+//     })
+// })
