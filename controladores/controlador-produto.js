@@ -72,4 +72,4 @@ const deleteProduto = async (req,res) => {
         
 }
 
-module.exports = {listProdutos, getProduto, createProduto, updateProduto, deleteProduto}
+module.exports = {listProdutos, getProduto, createProduto, updateProduto, deleteProduto};

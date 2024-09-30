@@ -1,0 +1,143 @@
+openapi: 3.0.3
+
+info: 
+  title: API Senai
+  description: API para gerenciamento de autenticação, clientes e produtos do Senai
+  version: 3.0.0
+
+paths:
+  /cliente:
+    get:
+      summary: Recupera todos os clientes em formato JSON
+      responses:
+        200:
+          description: Solicitação processada com sucesso
+
+    post:
+      summary: Cria um novo cliente e atualiza o registro no arquivo JSON
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Estrutura JSON representando o cliente
+      responses: 
+        200:
+          description: Cliente adicionado com sucesso
+    
+  /cliente/{id}: 
+    get:
+      summary: Obtém os dados de um cliente específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            description: Identificador único do cliente no banco de dados
+      responses:
+        200:
+          description: Solicitação processada com sucesso
+
+    post:
+      summary: Modifica as informações de um cliente no banco de dados
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Estrutura JSON representando as informações do cliente
+      responses:
+        200:
+          description: Cliente atualizado com sucesso
+
+    delete:
+      summary: Remove um cliente específico usando seu ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            maximum: 1
+          description: Identificador do cliente a ser excluído
+      responses:
+        200:
+          description: Cliente removido com sucesso
+
+  /produto:
+    get:
+      summary: Recupera todos os produtos em formato JSON
+      responses:
+        200:
+          description: Solicitação processada com sucesso
+
+    post:
+      summary: Adiciona um novo produto e atualiza o registro no arquivo JSON
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Estrutura JSON representando o produto
+      responses: 
+        200:
+          description: Produto criado com sucesso
+
+  /produto/{id}: 
+    get:
+      summary: Obtém os dados de um produto específico pelo ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            description: Identificador único do produto no banco de dados
+      responses:
+        200:
+          description: Solicitação processada com sucesso
+
+    post:
+      summary: Atualiza as informações de um produto específico no banco de dados
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            description: Identificador do produto a ser atualizado
+      responses:
+        200:
+          description: Produto atualizado com sucesso
+
+    delete:
+      summary: Remove um produto específico usando seu ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+            maximum: 1
+          description: Identificador do produto a ser excluído
+      responses:
+        200:
+          description: Produto removido com sucesso
+
+  /auth/login:
+    post:
+      summary: Realiza o login enviando um JSON e validando as credenciais no banco de dados
+      responses:
+        200:
+          description: Login efetuado com sucesso
+
+  /auth/logout:
+    post:
+      summary: Finaliza a sessão do cliente de forma imediata
+      responses: 
+        200:
+          description: Logout realizado com sucesso
